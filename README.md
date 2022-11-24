@@ -2,6 +2,8 @@
 20 Second Game
 
 <img src="https://user-images.githubusercontent.com/46084870/203777154-904eca27-2f10-4f83-9e10-3fca6963cdea.png" width="100%">
+<img src="https://user-images.githubusercontent.com/46084870/203831074-947d0d3c-04be-429d-b791-fcb40d593bc7.png" width="100%">
+
 
 ## Contributing
 
