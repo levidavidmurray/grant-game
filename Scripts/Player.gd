@@ -14,6 +14,14 @@ func _ready():
 func _physics_process(delta):
 		var motion = Vector2()
 		
+		if Input.is_action_just_pressed("restart"):
+			print("")
+			print("==== RELOAD ====")
+			for _i in get_tree().get_root().get_children():
+				print(_i)
+			get_tree().reload_current_scene()
+			return
+		
 		if Input.is_action_pressed("up"):
 			motion.y -= 1
 		if Input.is_action_pressed("down"):

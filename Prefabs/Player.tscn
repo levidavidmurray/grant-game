@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Images/Screenshot 2022-11-23 230716.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Images/grant.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Sounds/Laser_Gun_Shot_4.wav" type="AudioStream" id=3]
 [ext_resource path="res://Resources/Sounds/Character_Death_Voice_1.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 56, 80.5 )
+extents = Vector2( 32.5, 44.5 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 20.0
+height = 28.0
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 100, 100 )
@@ -20,8 +24,12 @@ texture = ExtResource( 2 )
 position = Vector2( -1, -0.5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 1, 0 )
+position = Vector2( 15.5, 36 )
 shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 20, -44.5 )
+shape = SubResource( 2 )
 
 [node name="BulletSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -100, -100 )
