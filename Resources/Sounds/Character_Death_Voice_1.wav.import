@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Character_Death_Voice_1.wav-82fef1c2dfb3fa811fba86ad1af5f799.sample"
+
+[deps]
+
+source_file="res://Resources/Sounds/Character_Death_Voice_1.wav"
+dest_files=[ "res://.import/Character_Death_Voice_1.wav-82fef1c2dfb3fa811fba86ad1af5f799.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

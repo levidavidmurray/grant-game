@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Laser_Gun_Shot_4.wav-ccf2738014b97b971f0fdf6a4a8a9307.sample"
+
+[deps]
+
+source_file="res://Resources/Sounds/Laser_Gun_Shot_4.wav"
+dest_files=[ "res://.import/Laser_Gun_Shot_4.wav-ccf2738014b97b971f0fdf6a4a8a9307.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

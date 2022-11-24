@@ -1,13 +1,15 @@
 extends KinematicBody2D
 
+signal bullet_shot
+
 var movespeed = 500
 var bullet_speed = 2000
-var bullet = preload("res://Bullet.tscn")
+var bullet = preload("res://Prefabs/Bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    pass
-    
+	pass
+
 
 func _physics_process(delta):
 		var motion = Vector2()
@@ -33,6 +35,8 @@ func _physics_process(delta):
 			
 			
 func fire():
+	emit_signal('bullet_shot')
+	$BulletSound.play()
 	var bullet_instance = bullet.instance()
 	bullet_instance.position = get_global_position()
 	bullet_instance.rotation_degrees = rotation_degrees
@@ -41,11 +45,13 @@ func fire():
 	
 
 func kill():
+	$DeathSound.play()
+	yield($DeathSound, "finished")
 	get_tree().reload_current_scene()
 	
 
 func _on_Area2D_body_entered(body):
-	if "Enemy" in body.name:
+	if body.is_in_group("Enemy"):
 		print("levi")
 		kill()
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Enemy.gd" type="Script" id=1]
-[ext_resource path="res://Screenshot 2022-11-23 225932.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Images/Screenshot 2022-11-23 225932.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Sounds/Oof.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 60, 55.5 )
@@ -9,7 +10,7 @@ extents = Vector2( 60, 55.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 54, 45.5 )
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=["Enemy"]]
 position = Vector2( 505, 143 )
 script = ExtResource( 1 )
 
@@ -26,5 +27,10 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -3, 2.5 )
 shape = SubResource( 2 )
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -100, -100 )
+stream = ExtResource( 3 )
+volume_db = -10.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
