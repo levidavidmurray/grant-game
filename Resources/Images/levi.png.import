@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Screenshot 2022-11-24 024527.png-a27cbb5a4fef8ec3fed81f7963117d12.stex"
+path="res://.import/levi.png-9c65980028e7f73525fee35a2ab6af35.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Images/Screenshot 2022-11-24 024527.png"
-dest_files=[ "res://.import/Screenshot 2022-11-24 024527.png-a27cbb5a4fef8ec3fed81f7963117d12.stex" ]
+source_file="res://Resources/Images/levi.png"
+dest_files=[ "res://.import/levi.png-9c65980028e7f73525fee35a2ab6af35.stex" ]
 
 [params]
 

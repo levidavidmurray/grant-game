@@ -12,6 +12,7 @@ onready var player = get_node('/root/World/Player')
 func _ready():
 	rng.randomize()
 	player.connect('bullet_shot', self, 'apply_shake')
+	player.connect('death', self, 'apply_shake')
 
 func _process(delta):
 	shake_strength = lerp(shake_strength, 0, SHAKE_DECAY_RATE * delta)

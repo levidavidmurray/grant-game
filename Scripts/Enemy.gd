@@ -14,17 +14,33 @@ func _physics_process(delta):
 		return
 		
 	position += (player.position - position)/50
-	look_at(player.position)
+#	look_at(player.position)
 	move_and_collide(motion)
 	
 func _process(delta) -> void:
-	if is_dead and !dp.emitting:
+	if is_dead and dp and !dp.emitting:
 		particles_played = true
 		print('Cleaning up', self.name)
 		# clean up particles
 		dp.queue_free()
 		# delete enemy
 		queue_free()
+
+	
+func die() -> void:
+	is_dead = true
+	
+	$DeathSound.play()
+	
+	# disable colliders to prevent further triggers & collisions
+	get_node("CollisionShape2D").call_deferred('set', 'disabled', true)
+	get_node("Area2D").get_node("CollisionShape2D").call_deferred('set', 'disabled', true)
+	
+	$AnimationPlayer.play("DeathFlash")
+	
+	yield($AnimationPlayer, "animation_finished")
+	$Sprite.visible = false
+	create_particles()
 	
 	
 func create_particles() -> void:
@@ -32,19 +48,8 @@ func create_particles() -> void:
 	dp.emitting = true
 	dp.position = get_global_position()
 	get_tree().get_root().call_deferred("add_child", dp)
-
 	
-func die() -> void:
-	create_particles()
-	is_dead = true
 	
-	$DeathSound.play()
-	$Sprite.visible = false
-	
-	# disable colliders to prevent further triggers & collisions
-	get_node("CollisionShape2D").call_deferred('set', 'disabled', true)
-	get_node("Area2D").get_node("CollisionShape2D").call_deferred('set', 'disabled', true)
-
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Bullet"):
 		body.queue_free() # delete bullet
