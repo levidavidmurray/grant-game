@@ -21,7 +21,7 @@ Open a pull request in order for your changes to be synced to the main repo
 ##### 7. Add description of changes and click _Create pull request_
 
 ---
-## Updating Fork
+## Updating Fork (Sync main repo to your fork)
 
 ### 1. Sync your fork's repo (update branch)
 ![image](https://user-images.githubusercontent.com/46084870/203775191-f0a95312-4577-4609-ad81-98b789bf84b8.png)
