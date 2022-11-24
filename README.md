@@ -1,6 +1,8 @@
 # Grant Game
 20 Second Game
 
+<img src="https://user-images.githubusercontent.com/46084870/203777154-904eca27-2f10-4f83-9e10-3fca6963cdea.png" width="100%">
+
 ## Contributing
 
 ### 1. Commit changes to fork
