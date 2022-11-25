@@ -4,7 +4,7 @@ signal bullet_shot
 signal death
 
 var bullet = preload("res://Prefabs/Bullet.tscn")
-
+var sword = preload("res://Prefabs/Sword.tscn")
 var movespeed = 500
 var bullet_speed = 1500
 var is_dead: bool = false
@@ -47,10 +47,13 @@ func _physics_process(delta):
 		
 		if Input.is_action_just_pressed("LMB"):
 			fire()
-			
+		
+		if Input.is_action_just_pressed("RMB"):
+			melee()
+		
 		if Input.is_action_pressed("exit"):
 			get_tree().quit()
-			
+		
 			
 func set_colliders_enabled(enabled: bool) -> void:
 	var area = get_node("Area2D")
@@ -71,6 +74,11 @@ func fire():
 	bullet_instance.apply_impulse(Vector2(), bullet_dir * bullet_speed)
 	get_tree().get_root().call_deferred("add_child", bullet_instance)
 	
+	
+func melee():
+	var sword_inst = sword.instance()
+	add_child(sword_inst)
+	sword_inst.position += Vector2(1000, 100)
 
 func die():
 	emit_signal('death')
