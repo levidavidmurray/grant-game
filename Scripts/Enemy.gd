@@ -54,3 +54,8 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("Bullet"):
 		body.queue_free() # delete bullet
 		die()
+
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("Sword"):
+		die()
