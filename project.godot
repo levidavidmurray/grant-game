@@ -29,6 +29,7 @@ _global_script_class_icons={
 config/name="Grant Game"
 run/main_scene="res://World.tscn"
 config/icon="res://Resources/Images/icon.png"
+config/windows_native_icon="res://Resources/Images/ficon.ico"
 
 [autoload]
 
