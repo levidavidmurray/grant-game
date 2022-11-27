@@ -28,7 +28,7 @@ position = Vector2( 736, 537 )
 [node name="Enemy4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 389, 668 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Johnny" type="Sprite" parent="."]
 position = Vector2( 526, 213 )
 scale = Vector2( 15.4828, 7.03846 )
 z_index = -99

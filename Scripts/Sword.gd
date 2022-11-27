@@ -1,23 +1,34 @@
-extends KinematicBody2D
+extends Area2D
+
+class_name Sword
 
 signal enemy_hit
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-onready var Swing_sound = $AudioStreamPlayer2D
+signal sword_finish
+
 onready var Swing_anim = $AnimationPlayer
-# Called when the node enters the scene tree for the first time.
+
+var active: bool = false
+
 func _ready():
-	Swing_sound.play()
+	$AnimationPlayer.connect("animation_finished", self, "_on_anim_finish")
+	$CollisionShape2D.disabled = true
+	$Sprite.visible = false
+
+
+func _on_anim_finish(anim_name: String):
+	# queue_free()
+	$CollisionShape2D.disabled = true
+	$Sprite.visible = false
+	emit_signal("sword_finish")
+	pass
+
+
+func do_attack() -> void:
+	$CollisionShape2D.disabled = false
+	$Sprite.visible = true
+	$SfxSwordSwing.play()
 	Swing_anim.play("attack")
-	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_AnimationPlayer_animation_finished(anim_name):
-	queue_free()
-
+func set_active(active: bool) -> void:
+	pass

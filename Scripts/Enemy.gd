@@ -12,19 +12,25 @@ onready var player = get_parent().get_node("Player")
 func _physics_process(delta):
 	if is_dead:
 		return
+	if ConfigLoader.Instance.debug_no_enemy_move:
+		return
 		
-	position += (player.position - position)/50
-#	look_at(player.position)
-	move_and_collide(motion)
+	position += (player.position - position) / 50
+
+	var collision = move_and_collide(motion)
+	if collision:
+		print(collision)
+	if collision and collision.collider:
+		var col := collision.collider as Node2D
+		print(col.name)
+		if col.is_in_group("Weapon"):
+			print("Weapon! %s" % col.name)
 	
 func _process(delta) -> void:
 	if is_dead and dp and !dp.emitting:
 		particles_played = true
-		print('Cleaning up', self.name)
-		# clean up particles
-		dp.queue_free()
-		# delete enemy
-		queue_free()
+		dp.queue_free() # clean up particles
+		queue_free() # delete enemy
 
 	
 func die() -> void:

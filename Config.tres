@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Config.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+debug_no_dmg = false
+debug_no_enemy_move = false
+debug_name = "foo"

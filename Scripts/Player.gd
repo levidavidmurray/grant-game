@@ -4,14 +4,33 @@ signal bullet_shot
 signal death
 
 var bullet = preload("res://Prefabs/Bullet.tscn")
-var sword = preload("res://Prefabs/Sword.tscn")
 var movespeed = 500
 var bullet_speed = 1500
 var is_dead: bool = false
+var sword_ready := true
 
-# Called when the node enters the scene tree for the first time.
+onready var sword_rot: Node2D = $SwordRot
+onready var sword: Sword = $SwordRot.get_node("Sword")
+
+
 func _ready():
-	pass
+	sword.connect("sword_finish", self, "on_sword_finish")
+
+
+func _process(delta):
+	var global_mouse = get_global_mouse_position()
+
+	var local_mouse_dir = to_local(global_mouse).sign().x
+	self.scale *= Vector2(local_mouse_dir, 1)
+
+	if sword_ready:
+		sword_rot.look_at(global_mouse)
+	else:
+		# prevent active sword from being mirrored
+		if local_mouse_dir < 0:
+			# TODO: Fix sword being mirrored on apparent y-axis due to sword_rot rotation
+			sword_rot.scale *= Vector2(local_mouse_dir, 1)
+
 
 
 func _physics_process(delta):
@@ -69,29 +88,45 @@ func fire():
 	bullet_instance.position = get_global_position()
 
 	var bullet_dir: Vector2 = (mouse_pos - bullet_instance.position).normalized()
-	# bullet_instance.rotation_degrees = rotation_degrees
 
 	bullet_instance.apply_impulse(Vector2(), bullet_dir * bullet_speed)
 	get_tree().get_root().call_deferred("add_child", bullet_instance)
 	
 	
 func melee():
-	var sword_inst = sword.instance()
-	add_child(sword_inst)
-	sword_inst.position += Vector2(1000, 100)
+	if !sword_ready:
+		return
+
+	var sr_scale = sword_rot.scale
+	sr_scale.x = self.scale.x
+	sword_rot.scale = sr_scale
+
+	sword_ready = false
+	sword.do_attack()
+
 
 func die():
 	emit_signal('death')
 	is_dead = true
 	set_colliders_enabled(false)
+
 	$AnimationPlayer.play("DeathFlash")
 	$DeathSound.play()
+
+	# wait for anim and sfx before reloading after death
 	yield($DeathSound, "finished")
 	yield($AnimationPlayer, "animation_finished")
+
 	get_tree().reload_current_scene()
+
+
+func on_sword_finish():
+	sword_ready = true
 	
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Enemy"):
+		if ConfigLoader.Instance.debug_no_dmg:
+			return
 		die()
 

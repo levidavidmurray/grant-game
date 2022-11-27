@@ -8,11 +8,31 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Resource",
+"class": "Config",
+"language": "GDScript",
+"path": "res://Scripts/Config.gd"
+}, {
+"base": "Area2D",
+"class": "Sword",
+"language": "GDScript",
+"path": "res://Scripts/Sword.gd"
+} ]
+_global_script_class_icons={
+"Config": "",
+"Sword": ""
+}
+
 [application]
 
 config/name="Grant Game"
 run/main_scene="res://World.tscn"
 config/icon="res://Resources/Images/icon.png"
+
+[autoload]
+
+ConfigLoader="*res://Scripts/ConfigLoader.gd"
 
 [gui]
 
