@@ -29,7 +29,7 @@ position = Vector2( 736, 537 )
 position = Vector2( 389, 668 )
 
 [node name="Johnny" type="Sprite" parent="."]
-position = Vector2( 526, 213 )
-scale = Vector2( 15.4828, 7.03846 )
+position = Vector2( 436, 167 )
+scale = Vector2( 19.9828, 9.23461 )
 z_index = -99
 texture = ExtResource( 4 )
